@@ -1,0 +1,15 @@
+[
+{
+  "modid": "betterchesting",
+  "name": "Better Chesting",
+  "description": "Changes how Vanilla chests work",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["ErdbeerbaerLP"],
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
