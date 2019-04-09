@@ -1,11 +1,13 @@
 package de.erdbeerbaerlp.betterchesting;
 
 
+import net.minecraft.block.BlockShulkerBox;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.command.CommandGive;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
+import net.minecraft.item.ItemShulkerBox;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
@@ -62,7 +64,7 @@ public class BlockChest extends net.minecraft.block.BlockChest {
 				final ItemStack item = te.getStackInSlot(i);
 				if(item.isEmpty()) continue;
 				NBTTagCompound itemTag = new NBTTagCompound();
-				itemTag.setInteger("Slot", i); 
+				itemTag.setInteger("Slot", i);
 				itemTag.setString("id", item.getItem().getRegistryName().getResourcePath());
 				itemTag.setInteger("Count", item.getCount());
 				if(item.hasTagCompound()) itemTag.setTag("tag", item.getTagCompound());
@@ -71,7 +73,6 @@ public class BlockChest extends net.minecraft.block.BlockChest {
 			blockEntityTag.setTag("Items", itemList);
 			tag.setTag("BlockEntityTag", blockEntityTag);
 			stack.setTagCompound(tag);
-			System.out.println(stack.getTagCompound());
 			spawnAsEntity(worldIn, pos, stack);
 		}
 	}
