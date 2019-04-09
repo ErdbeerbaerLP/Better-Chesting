@@ -1,7 +1,7 @@
 # Better-Chesting
 This mod adds more features to the vanilla chest.
 
-Features:
+__Features:__
 
 Items no longer get dropped after destroying the chest.
 
