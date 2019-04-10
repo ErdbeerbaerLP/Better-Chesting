@@ -1,23 +1,20 @@
 package de.erdbeerbaerlp.betterchesting;
 
 
-import net.minecraft.block.BlockShulkerBox;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.command.CommandGive;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
-import net.minecraft.item.ItemShulkerBox;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import net.minecraft.nbt.NBTTagString;
-import net.minecraft.nbt.NBTUtil;
 import net.minecraft.stats.StatList;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityChest;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.ILockableContainer;
 import net.minecraft.world.World;
 
 public class BlockChest extends net.minecraft.block.BlockChest {
@@ -76,5 +73,36 @@ public class BlockChest extends net.minecraft.block.BlockChest {
 			spawnAsEntity(worldIn, pos, stack);
 		}
 	}
+	
+	/**
+     * Called when the block is right clicked by a player.
+     */
+    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
+    {
+        if (worldIn.isRemote)
+        {
+            return true;
+        }
+        else
+        {
+            ILockableContainer ilockablecontainer = this.getLockableContainer(worldIn, pos);
+
+            if (ilockablecontainer != null)
+            {
+                BetterChesting.displayGUIChest(ilockablecontainer, playerIn);
+
+                if (this.chestType == BlockChest.Type.BASIC)
+                {
+                    playerIn.addStat(StatList.CHEST_OPENED);
+                }
+                else if (this.chestType == BlockChest.Type.TRAP)
+                {
+                    playerIn.addStat(StatList.TRAPPED_CHEST_TRIGGERED);
+                }
+            }
+
+            return true;
+        }
+    }
 
 }
