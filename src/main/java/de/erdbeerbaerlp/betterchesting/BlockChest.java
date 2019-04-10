@@ -43,7 +43,7 @@ public class BlockChest extends net.minecraft.block.BlockChest {
 			ItemStack heldStack) {
 		ItemStack stack = new ItemStack(this);
 		player.addStat(StatList.getBlockStats(this));
-        player.addExhaustion(0.005F);
+		player.addExhaustion(0.005F);
 		if (tileentity instanceof TileEntityChest)
 		{
 			TileEntityChest te = ((TileEntityChest)tileentity);
@@ -73,36 +73,36 @@ public class BlockChest extends net.minecraft.block.BlockChest {
 			spawnAsEntity(worldIn, pos, stack);
 		}
 	}
-	
+
 	/**
-     * Called when the block is right clicked by a player.
-     */
-    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
-    {
-        if (worldIn.isRemote)
-        {
-            return true;
-        }
-        else
-        {
-            ILockableContainer ilockablecontainer = this.getLockableContainer(worldIn, pos);
+	 * Called when the block is right clicked by a player.
+	 */
+	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
+	{
+		if (worldIn.isRemote)
+		{
+			return true;
+		}
+		else
+		{
+			ILockableContainer ilockablecontainer = this.getLockableContainer(worldIn, pos);
 
-            if (ilockablecontainer != null)
-            {
-                BetterChesting.displayGUIChest(ilockablecontainer, playerIn);
+			if (ilockablecontainer != null)
+			{
+				BetterChesting.displayGUIChest(ilockablecontainer, playerIn);
 
-                if (this.chestType == BlockChest.Type.BASIC)
-                {
-                    playerIn.addStat(StatList.CHEST_OPENED);
-                }
-                else if (this.chestType == BlockChest.Type.TRAP)
-                {
-                    playerIn.addStat(StatList.TRAPPED_CHEST_TRIGGERED);
-                }
-            }
+				if (this.chestType == BlockChest.Type.BASIC)
+				{
+					playerIn.addStat(StatList.CHEST_OPENED);
+				}
+				else if (this.chestType == BlockChest.Type.TRAP)
+				{
+					playerIn.addStat(StatList.TRAPPED_CHEST_TRIGGERED);
+				}
+			}
 
-            return true;
-        }
-    }
+			return true;
+		}
+	}
 
 }

@@ -33,56 +33,56 @@ public class BetterChesting {
 	}
 	@EventHandler
 	public void init(FMLInitializationEvent ev) {
-		
+
 	}
 	@EventHandler
 	public void postInit(FMLPostInitializationEvent ev) {
 	}
 	@SubscribeEvent
 	public void registerBlocks(RegistryEvent.Register<Block> event) {
-	    event.getRegistry().registerAll(new BlockChest(BlockChest.Type.BASIC).setRegistryName("minecraft", "chest").setUnlocalizedName("chest").setHardness(2.5F), new BlockChest(BlockChest.Type.TRAP).setRegistryName("minecraft", "trapped_chest").setUnlocalizedName("chestTrap").setHardness(2.5F));
+		event.getRegistry().registerAll(new BlockChest(BlockChest.Type.BASIC).setRegistryName("minecraft", "chest").setUnlocalizedName("chest").setHardness(2.5F), new BlockChest(BlockChest.Type.TRAP).setRegistryName("minecraft", "trapped_chest").setUnlocalizedName("chestTrap").setHardness(2.5F));
 	}
-	
-	public static void displayGUIChest(IInventory chestInventory, EntityPlayer p)
-    {
-		if(p instanceof EntityPlayerMP) p.displayGUIChest(chestInventory);
-        String s = chestInventory instanceof IInteractionObject ? ((IInteractionObject)chestInventory).getGuiID() : "minecraft:container";
 
-        if ("minecraft:chest".equals(s))
-        {
-            mc.displayGuiScreen(new GuiChest(p.inventory, chestInventory));
-        }
-        else if ("minecraft:hopper".equals(s))
-        {
-            mc.displayGuiScreen(new GuiHopper(p.inventory, chestInventory));
-        }
-        else if ("minecraft:furnace".equals(s))
-        {
-            mc.displayGuiScreen(new GuiFurnace(p.inventory, chestInventory));
-        }
-        else if ("minecraft:brewing_stand".equals(s))
-        {
-            mc.displayGuiScreen(new GuiBrewingStand(p.inventory, chestInventory));
-        }
-        else if ("minecraft:beacon".equals(s))
-        {
-            mc.displayGuiScreen(new GuiBeacon(p.inventory, chestInventory));
-        }
-        else if (!"minecraft:dispenser".equals(s) && !"minecraft:dropper".equals(s))
-        {
-            if ("minecraft:shulker_box".equals(s))
-            {
-                mc.displayGuiScreen(new GuiShulkerBox(p.inventory, chestInventory));
-            }
-            else
-            {
-                mc.displayGuiScreen(new GuiChest(p.inventory, chestInventory));
-            }
-        }
-        else
-        {
-            mc.displayGuiScreen(new GuiDispenser(p.inventory, chestInventory));
-        }
-    }
+	public static void displayGUIChest(IInventory chestInventory, EntityPlayer p)
+	{
+		if(p instanceof EntityPlayerMP) p.displayGUIChest(chestInventory);
+		String s = chestInventory instanceof IInteractionObject ? ((IInteractionObject)chestInventory).getGuiID() : "minecraft:container";
+
+		if ("minecraft:chest".equals(s))
+		{
+			mc.displayGuiScreen(new GuiChest(p.inventory, chestInventory));
+		}
+		else if ("minecraft:hopper".equals(s))
+		{
+			mc.displayGuiScreen(new GuiHopper(p.inventory, chestInventory));
+		}
+		else if ("minecraft:furnace".equals(s))
+		{
+			mc.displayGuiScreen(new GuiFurnace(p.inventory, chestInventory));
+		}
+		else if ("minecraft:brewing_stand".equals(s))
+		{
+			mc.displayGuiScreen(new GuiBrewingStand(p.inventory, chestInventory));
+		}
+		else if ("minecraft:beacon".equals(s))
+		{
+			mc.displayGuiScreen(new GuiBeacon(p.inventory, chestInventory));
+		}
+		else if (!"minecraft:dispenser".equals(s) && !"minecraft:dropper".equals(s))
+		{
+			if ("minecraft:shulker_box".equals(s))
+			{
+				mc.displayGuiScreen(new GuiShulkerBox(p.inventory, chestInventory));
+			}
+			else
+			{
+				mc.displayGuiScreen(new GuiChest(p.inventory, chestInventory));
+			}
+		}
+		else
+		{
+			mc.displayGuiScreen(new GuiDispenser(p.inventory, chestInventory));
+		}
+	}
 
 }
