@@ -13,6 +13,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class GuiChest extends GuiContainer
 {
+	public static final int GUI_ID = 1;
 	GuiButton btn = new GuiButton(0, 0, 0, "Settings");
 	/** The ResourceLocation containing the chest GUI texture. */
 	private static final ResourceLocation CHEST_GUI_TEXTURE = new ResourceLocation("textures/gui/container/generic_54.png");
@@ -39,6 +40,8 @@ public class GuiChest extends GuiContainer
 	 */
 	public void drawScreen(int mouseX, int mouseY, float partialTicks)
 	{
+		btn.x = this.width / 2;
+		btn.y = (this.height/4)*3;
 		this.drawDefaultBackground();
 		super.drawScreen(mouseX, mouseY, partialTicks);
 		this.renderHoveredToolTip(mouseX, mouseY);
@@ -51,8 +54,7 @@ public class GuiChest extends GuiContainer
 	{
 		this.fontRenderer.drawString(this.lowerChestInventory.getDisplayName().getUnformattedText(), 8, 6, 4210752);
 		this.fontRenderer.drawString(this.upperChestInventory.getDisplayName().getUnformattedText(), 8, this.ySize - 96 + 2, 4210752);
-		btn.x = this.width / 2;
-		btn.y = (this.height/4)*3;
+		
 	}
 
 	/**

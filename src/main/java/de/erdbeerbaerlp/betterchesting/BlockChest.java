@@ -89,7 +89,7 @@ public class BlockChest extends net.minecraft.block.BlockChest {
 
 			if (ilockablecontainer != null)
 			{
-				BetterChesting.displayGUIChest(ilockablecontainer, playerIn);
+				playerIn.openGui(BetterChesting.instance, GuiChest.GUI_ID, worldIn, pos.getX(), pos.getY(), pos.getZ());
 
 				if (this.chestType == BlockChest.Type.BASIC)
 				{
