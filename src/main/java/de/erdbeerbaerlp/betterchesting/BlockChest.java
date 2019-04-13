@@ -77,6 +77,7 @@ public class BlockChest extends net.minecraft.block.BlockChest {
 	/**
 	 * Called when the block is right clicked by a player.
 	 */
+	@Override
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
 	{
 		if (worldIn.isRemote)
