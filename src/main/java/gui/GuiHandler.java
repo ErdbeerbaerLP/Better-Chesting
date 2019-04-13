@@ -1,4 +1,4 @@
-package de.erdbeerbaerlp.betterchesting;
+package gui;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ContainerChest;
@@ -7,6 +7,8 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.IGuiHandler;
 
 import javax.annotation.Nullable;
+
+import de.erdbeerbaerlp.betterchesting.BlockChest;
 
 public class GuiHandler implements IGuiHandler {
 	@Nullable

@@ -1,5 +1,7 @@
 package de.erdbeerbaerlp.betterchesting;
 
+import gui.GuiChest;
+import gui.GuiHandler;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiHopper;
