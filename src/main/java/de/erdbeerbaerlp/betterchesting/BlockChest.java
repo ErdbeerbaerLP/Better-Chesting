@@ -1,7 +1,7 @@
 package de.erdbeerbaerlp.betterchesting;
 
 
-import gui.GuiChest;
+import de.erdbeerbaerlp.betterchesting.gui.GuiChest;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;

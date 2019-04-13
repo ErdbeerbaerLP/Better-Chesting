@@ -1,4 +1,4 @@
-package gui;
+package de.erdbeerbaerlp.betterchesting.gui;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;

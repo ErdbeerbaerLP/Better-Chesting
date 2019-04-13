@@ -1,4 +1,4 @@
-package gui;
+package de.erdbeerbaerlp.betterchesting.gui;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ContainerChest;
