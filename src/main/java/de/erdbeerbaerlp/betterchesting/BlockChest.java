@@ -16,7 +16,9 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.Style;
 import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.ILockableContainer;
 import net.minecraft.world.World;
@@ -117,11 +119,11 @@ public class BlockChest extends net.minecraft.block.BlockChest {
 				System.out.println(te.getOwner());
 				if(te.getOwner() == null && !te.isLootchest()) {
 					te.setOwner(new ChestUser(playerIn, ChestPermission.all())); 
-					playerIn.sendStatusMessage(new TextComponentString(I18n.format("betterchesting.ownerSet", te.getOwner().getName())), true);
+					playerIn.sendStatusMessage(new TextComponentTranslation("betterchesting.ownerSet", te.getOwner().getName()), true);
 				}
 				
 				if(!te.canOpenChest(playerIn)) {
-					playerIn.sendStatusMessage(new TextComponentString(TextFormatting.RED+I18n.format("betterchesting.notAllowed")), true);
+					playerIn.sendStatusMessage(new TextComponentTranslation("betterchesting.notAllowed").setStyle(new Style().setColor(TextFormatting.RED)), true);
 					return true;
 				}
 
