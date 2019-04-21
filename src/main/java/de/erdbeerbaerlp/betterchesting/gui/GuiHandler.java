@@ -1,14 +1,12 @@
 package de.erdbeerbaerlp.betterchesting.gui;
 
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.ContainerChest;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
-import net.minecraftforge.fml.common.network.IGuiHandler;
-
 import javax.annotation.Nullable;
 
 import de.erdbeerbaerlp.betterchesting.BlockChest;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
+import net.minecraftforge.fml.common.network.IGuiHandler;
 
 public class GuiHandler implements IGuiHandler {
 	@Nullable
@@ -29,7 +27,7 @@ public class GuiHandler implements IGuiHandler {
 		BlockPos pos = new BlockPos(x, y, z);
 		switch (id) {
 			case GuiChest.GUI_ID:
-				if(world.getBlockState(pos).getBlock() instanceof BlockChest) return new GuiChest(player.inventory, ((BlockChest)world.getBlockState(pos).getBlock()).getLockableContainer(world, pos));
+				if(world.getBlockState(pos).getBlock() instanceof BlockChest) return new GuiChest(player.inventory, ((BlockChest)world.getBlockState(pos).getBlock()).getLockableContainer(world, pos), pos);
 			default:
 				return null;
 		}
