@@ -14,6 +14,7 @@ public class ChestUser {
 	public ChestUser(EntityPlayer player, ChestPermission... perm) {
 		this(player.getName(), player.getUniqueID().toString(), perm);
 	}
+	
 	public ChestUser(String name, String uuid, ChestPermission... perm) {
 		this.name = name;
 		this.uuid = uuid;
@@ -23,7 +24,6 @@ public class ChestUser {
 		}
 		this.perms = l;
 	}
-	
 	public String getName() {
 		return name;
 	}
