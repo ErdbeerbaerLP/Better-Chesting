@@ -101,11 +101,6 @@ public class TileEntityChest extends net.minecraft.tileentity.TileEntityChest{
 		this.whitelisted.add(u);
 		this.markDirty();
 	}
-	@Override
-	public void markDirty() {
-		world.notifyBlockUpdate(pos, world.getBlockState(pos), world.getBlockState(pos), 1);
-		super.markDirty();
-	}
 
 	public boolean removeFromWhitelist(EntityPlayer p) {
 		for(ChestUser u : this.whitelisted) {
