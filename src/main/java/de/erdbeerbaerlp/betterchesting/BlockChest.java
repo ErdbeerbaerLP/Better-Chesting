@@ -175,6 +175,7 @@ public class BlockChest extends net.minecraft.block.BlockChest {
 				worldIn.setTileEntity(pos, te);
 				te.readFromNBT(tag);
 				te.markDirty();
+				worldIn.notifyBlockUpdate(pos, worldIn.getBlockState(pos), worldIn.getBlockState(pos), 2);
 				playerIn.sendStatusMessage(new TextComponentString(I18n.format("betterchesting.updated")), true);
 				return true;
 			}
@@ -238,6 +239,7 @@ public class BlockChest extends net.minecraft.block.BlockChest {
 				nbt2.setTag("chesting_info", nbt.getCompoundTag("chesting_info"));
 				te.readFromNBT(nbt2);
 				te.markDirty();
+				worldIn.notifyBlockUpdate(pos, worldIn.getBlockState(pos), worldIn.getBlockState(pos), 1);
 				
 			}
 			

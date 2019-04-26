@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import de.erdbeerbaerlp.betterchesting.gui.ContainerChest;
 import net.minecraft.block.BlockChest;
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.IInventory;
@@ -18,6 +19,8 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraftforge.fml.common.FMLCommonHandler;
+import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 @SuppressWarnings("unused")
 public class TileEntityChest extends net.minecraft.tileentity.TileEntityChest{
 
@@ -41,6 +44,7 @@ public class TileEntityChest extends net.minecraft.tileentity.TileEntityChest{
 			if(info.hasKey("lootchest")) this.isLootchest = info.getBoolean("lootchest");
 			else if (this.lootTable != null) this.isLootchest = true;
 			if(this.isLootchest) {
+				System.out.println("loot");
 				this.owner = ChestUser.getPublicChestUser();
 			}else {
 				System.out.println(info);
@@ -55,12 +59,15 @@ public class TileEntityChest extends net.minecraft.tileentity.TileEntityChest{
 					}
 			}
 		}
-
+		
 	}
+
 	@Override
 	public void handleUpdateTag(NBTTagCompound tag) {
 		// TODO Auto-generated method stub
 		readFromNBT(tag);
+		
+		
 	}
 	@Override
 	public SPacketUpdateTileEntity getUpdatePacket() {
@@ -91,6 +98,7 @@ public class TileEntityChest extends net.minecraft.tileentity.TileEntityChest{
 	public final void setOwner(ChestUser chestUser) {
 		this.owner = chestUser;
 		this.markDirty();
+		world.notifyBlockUpdate(pos, world.getBlockState(pos), world.getBlockState(pos), 2);
 	}
 
 	public ChestUser getOwner() {
@@ -100,6 +108,7 @@ public class TileEntityChest extends net.minecraft.tileentity.TileEntityChest{
 	public void addToWhitelist(ChestUser u) {
 		this.whitelisted.add(u);
 		this.markDirty();
+		world.notifyBlockUpdate(pos, world.getBlockState(pos), world.getBlockState(pos), 2);
 	}
 
 	public boolean removeFromWhitelist(EntityPlayer p) {
@@ -107,6 +116,7 @@ public class TileEntityChest extends net.minecraft.tileentity.TileEntityChest{
 			if(p.getUniqueID().toString().equals(u.getUuid())) {
 				whitelisted.remove(u);
 				markDirty();
+				world.notifyBlockUpdate(pos, world.getBlockState(pos), world.getBlockState(pos), 2);
 				return true;
 			}
 		}
@@ -117,6 +127,8 @@ public class TileEntityChest extends net.minecraft.tileentity.TileEntityChest{
 		for(int i=0;i<tagList.tagCount();i++) {
 			this.whitelisted.add(ChestUser.fromNBT(tagList.getCompoundTagAt(i)));
 		}
+		this.markDirty();
+		world.notifyBlockUpdate(pos, world.getBlockState(pos), world.getBlockState(pos), 2);
 	}
 
 	public boolean canOpenChest(EntityPlayer p) {
@@ -142,6 +154,7 @@ public class TileEntityChest extends net.minecraft.tileentity.TileEntityChest{
 	 */
 	public void update()
 	{
+		System.out.println(""+this.isLootchest);
 		this.checkForAdjacentChests();
 		int i = this.pos.getX();
 		int j = this.pos.getY();

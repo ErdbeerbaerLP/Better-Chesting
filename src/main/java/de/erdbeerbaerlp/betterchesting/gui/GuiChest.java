@@ -46,6 +46,7 @@ public class GuiChest extends GuiContainer
 	@Override
 	public void initGui() {
 		this.addButton(btn);
+		System.out.println(te.isLootchest());
 		super.initGui();
 	}
 	/**
