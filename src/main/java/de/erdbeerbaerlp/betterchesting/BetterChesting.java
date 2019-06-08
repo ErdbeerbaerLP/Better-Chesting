@@ -18,7 +18,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 public class BetterChesting {
 	public static final String NAME = "Better Chesting";
 	public static final String MODID = "betterchesting";
-	public static final String VERSION = "1.0.1";
+	public static final String VERSION = "1.0.2";
 	
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent ev) {
