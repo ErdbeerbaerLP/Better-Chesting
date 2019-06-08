@@ -1,7 +1,0 @@
-betterchesting.ownerSet=This chest now belongs to %s
-betterchesting.notAllowed=This is not your chest!
-betterchesting.filledChest=This chest contains items
-betterchesting.shiftForMore=Shift to see items
-betterchesting.itemsHeader=====ITEMS=====
-betterchesting.cannotDouble=The other chest it not yours! It belongs to %s!
-betterchesting.doubleChest=You can´t place a chest next to a double chest!

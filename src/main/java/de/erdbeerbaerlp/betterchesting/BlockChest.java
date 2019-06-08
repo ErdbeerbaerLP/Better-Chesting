@@ -62,6 +62,7 @@ public class BlockChest extends net.minecraft.block.BlockChest {
 
 			for(int i=0;i<slots;i++) {
 				final ItemStack item = te.getStackInSlot(i);
+				System.out.println(item);
 				if(item.isEmpty()) continue;
 				NBTTagCompound itemTag = new NBTTagCompound();
 				itemTag.setInteger("Slot", i);
