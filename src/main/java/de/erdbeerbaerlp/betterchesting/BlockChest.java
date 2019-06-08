@@ -1,19 +1,13 @@
 package de.erdbeerbaerlp.betterchesting;
 
 
-import net.minecraft.block.BlockShulkerBox;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.command.CommandGive;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
-import net.minecraft.item.ItemShulkerBox;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import net.minecraft.nbt.NBTTagString;
-import net.minecraft.nbt.NBTUtil;
 import net.minecraft.stats.StatList;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityChest;
@@ -62,11 +56,10 @@ public class BlockChest extends net.minecraft.block.BlockChest {
 
 			for(int i=0;i<slots;i++) {
 				final ItemStack item = te.getStackInSlot(i);
-				System.out.println(item);
 				if(item.isEmpty()) continue;
 				NBTTagCompound itemTag = new NBTTagCompound();
 				itemTag.setInteger("Slot", i);
-				itemTag.setString("id", item.getItem().getRegistryName().getResourcePath());
+				itemTag.setString("id", item.getItem().getRegistryName().getResourceDomain()+":"+item.getItem().getRegistryName().getResourcePath());
 				itemTag.setInteger("Count", item.getCount());
 				itemTag.setShort("Damage", (short) item.getItemDamage());
 				if(item.hasTagCompound()) itemTag.setTag("tag", item.getTagCompound());
