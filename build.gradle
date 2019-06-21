@@ -17,7 +17,7 @@ apply plugin: 'org.spongepowered.mixin'
 //Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
 
 
-version = "1.1.0"
+version = "1.1.1"
 group = "de.erdbeerbaerlp.betterchesting" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "betterchesting"
 
@@ -45,9 +45,12 @@ minecraft {
     // makeObfSourceJar = false // an Srg named sources jar is made by default. uncomment this to disable.
     
 }
-
+configurations {
+    embed
+    compile.extendsFrom(embed)
+}
 dependencies {
-	compile('org.spongepowered:mixin:0.7.11-SNAPSHOT'){
+	embed('org.spongepowered:mixin:0.7.11-SNAPSHOT'){
         exclude module: 'launchwrapper'
         exclude module: 'guava'
         exclude module: 'gson'
@@ -79,6 +82,12 @@ processResources {
     }
 }
 jar {
+from(configurations.embed.findAll { !it.name.endsWith('pom') }.collect {
+       it.isDirectory() ? it : zipTree(it)
+    }) {
+
+        exclude "LICENSE.txt", "META-INF/MANIFSET.MF", "META-INF/maven/**", "META-INF/*.RSA", "META-INF/*.SF"
+    }
     manifest {
         attributes([
                 'Maven-Artifact': "${project.group}:${project.archivesBaseName}:${project.version}",
